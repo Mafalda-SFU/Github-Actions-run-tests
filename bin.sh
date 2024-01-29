@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+set +e # Do not fail on error
+node -p "require('./package.json').scripts.test" &> /dev/null
+exitCode=$?
+set -e # Fail on error
+
 # No tests, build package instead as a basic test and to publish it
-if ! node -p "require('./package.json').scripts.test" &> /dev/null ; then
+if ! $exitCode ; then
   npm run build
 
 # Jest test runner
