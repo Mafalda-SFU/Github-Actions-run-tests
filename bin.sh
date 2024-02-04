@@ -6,7 +6,7 @@ exitCode=$?
 set -e # Fail on error
 
 # No tests, build package instead as a basic test and to publish it
-if ! $exitCode ; then
+if [ $exitCode -ne 0 ]; then
   npm run build
 
 # Jest test runner
