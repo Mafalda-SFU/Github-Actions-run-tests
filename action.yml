@@ -2,6 +2,11 @@ name: Run tests
 author: Jesús Leganés-Combarro 'piranna' (http://piranna.github.io/)
 description: Detect and run tests, for Jest, Node.js `test`, or build by default
 
+inputs:
+  working-directory:
+    description: The working directory to run the tests
+    default: .
+
 runs:
   using: composite
   steps:
@@ -11,6 +16,7 @@ runs:
       shell: bash
       env:
         FORCE_COLOR: '1'
+      working-directory: ${{ inputs.working-directory }}
 
 branding:
   color: orange
